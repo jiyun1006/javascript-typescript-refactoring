@@ -12,7 +12,7 @@
 <br>
 
 - `tsconfig.json` 파일 코드   
-```json
+```js
 {
     "compilerOptions": {
         "strict": true,  
