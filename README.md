@@ -23,5 +23,12 @@
 
 - javascript만을 이용해서 만들었으며, `handlebars` 템플릿 라이브러리를 사용하여, ui를 작성했다.   
 
-- `parcel.js` 번들러를 이용한다.   
+- `parcel.js` 번들러를 이용한다.    
+
+
+<br>
+
+#### <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/tree/main/final">완성된 파일</a>
+
+#### <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/tree/main/refactoring">리팩토링 과정</a>
      
