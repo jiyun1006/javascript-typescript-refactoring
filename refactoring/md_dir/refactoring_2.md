@@ -9,7 +9,7 @@
 
 - DOM을 이용해서 전체 body태그를 가져오는 역할을 한 container 변수에 타입을 지정한다.   
 
-```
+```js
 // vscode의 기능을 이용해서 반환값을 알아낸다.
 (method) Document.getElementById(elementId: string): HTMLElement | null
 
@@ -33,7 +33,7 @@ const container: HTMLElement | null = document.getElementById('root');
 
 **api를 통해서 받아오는 데이터의 형식이 NewsFeed이므로, 재사용성이 높다.**    
 
-```
+```js
 //tpye을 이용한 타입 지정
 type Store = {
   currentPage: number;
@@ -72,7 +72,7 @@ const store: Store = {
 
 
 **container를 받아왔을 때, innerHTML이 실행되게끔 하는 타입가드 형식의 함수**
-```
+```js
 function updateView(html) {
   if (container) {
     container.innerHTML = html;
