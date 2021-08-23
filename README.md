@@ -22,3 +22,6 @@
 
 
 - javascript만을 이용해서 만들었으며, `handlebars` 템플릿 라이브러리를 사용하여, ui를 작성했다.   
+
+- `parcel.js` 번들러를 이용한다.   
+     
