@@ -6,5 +6,7 @@
 
 - <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_3.md">세 번째 리팩토링(함수 변환)</a>   
 
-- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_4.md">네 번째 리팩토링(type알리아스 & interface)</a>
+- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_4.md">네 번째 리팩토링(type알리아스 & interface)</a>   
+
+- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_5.md">다섯 번째 리팩토링(class 상속 & Mixin)</a>
 

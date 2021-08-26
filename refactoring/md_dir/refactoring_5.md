@@ -80,10 +80,9 @@
             this.ajax.send();
         
             return JSON.parse(this.ajax.response);
+            }
         }
-    }
-    ```   
-
+        ``` 
  <br>
 
 - `Mixin`을 이용해서 필요한 경우마다 class를 합성한다. (extends 와 같이 명시적으로 표기하지 않는다.)      
