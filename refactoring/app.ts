@@ -38,12 +38,82 @@ const store: Store = {
   feeds: [],
 };
 
-function getData<AjaxResponse>(url: string): AjaxResponse {
-  ajax.open('GET', url, false);
-  ajax.send();
+// MixIn 적용 안한 버전
+// class Api {
+//   url: string; // 내부에 저장하는 용도
+//   ajax: XMLHttpRequest;
 
-  return JSON.parse(ajax.response);
+//   constructor(url: string) {
+//     this.url = url // this로 내부 url에 접근해서 받은 url을 할당한다.
+//     this.ajax = new XMLHttpRequest();
+//   }
+
+
+//   protected getRequest<AjaxResponse>(): AjaxResponse {
+//     this.ajax.open('GET', this.url, false);
+//     this.ajax.send();
+  
+//     return JSON.parse(this.ajax.response);
+//   }
+// }
+
+
+// class NewsFeedApi extends Api{
+//   getData(): NewsFeed[] {
+//     return this.getRequest<NewsFeed[]>();
+    
+//   }
+
+// }
+
+// class NewsDetailApi extends Api{
+//   getData(): NewsDetail {
+//     return this.getRequest<NewsDetail>();
+//   }
+// }
+
+
+class Api {
+  getRequest<AjaxResponse>(url: string): AjaxResponse {
+    const ajax = new XMLHttpRequest();
+    ajax.open('GET', url, false);
+    ajax.send();
+  
+    return JSON.parse(ajax.response);
+  }
 }
+
+
+function applyApiMixins(targetClass: any, baseClasses: any[]): void {
+  baseClasses.forEach(baseClass => {
+    Object.getOwnPropertyNames(baseClass.prototype).forEach(name => {
+      const descriptor = Object.getOwnPropertyDescriptor(baseClass.prototype, name);
+      if (descriptor) {
+        Object.defineProperty(targetClass.prototype, name, descriptor);
+      }
+    });
+  });
+}
+
+class NewsFeedApi {
+  getData(): NewsFeed[] {
+    return this.getRequest<NewsFeed[]>(NEWS_URL);
+    
+  }
+}
+
+class NewsDetailApi {
+  getData(id: string): NewsDetail {
+    return this.getRequest<NewsDetail>(CONTENT_URL.replace('@id', id));
+  }
+}
+
+interface NewsFeedApi extends Api {};
+interface NewsDetailApi extends Api {};
+
+applyApiMixins(NewsFeedApi, [Api]);
+applyApiMixins(NewsDetailApi, [Api]);
+
 
 function makeFeeds(feeds: NewsFeed[]): NewsFeed[] {
   for (let i = 0; i < feeds.length; i++) {
@@ -63,6 +133,7 @@ function updateView(html: string): void {
 
 
 function newsFeed(): void {
+  const api = new NewsFeedApi();
   let newsFeed: NewsFeed[] = store.feeds;
   const newsList = [];
   let template = `
@@ -89,9 +160,9 @@ function newsFeed(): void {
       </div>
     </div>
   `;
-
+  
   if (newsFeed.length === 0) {
-    newsFeed = store.feeds = makeFeeds(getData<NewsFeed[]>(NEWS_URL));
+    newsFeed = store.feeds = makeFeeds(api.getData());
   }
 
   for (let i = (store.currentPage - 1) * 10; i < store.currentPage * 10; i++) {
@@ -125,7 +196,8 @@ function newsFeed(): void {
 
 function newsDetail(): void {
   const id = location.hash.substr(7);
-  const newsContent = getData<NewsDetail>(CONTENT_URL.replace('@id', id))
+  const api = new NewsDetailApi();
+  const newsContent = api.getData(id);
   let template = `
     <div class="bg-gray-600 min-h-screen pb-8">
       <div class="bg-white text-xl">
