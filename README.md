@@ -20,6 +20,34 @@
 
 - `newsFeed`, `newsDetail` 함수와 같이 뉴스목록, 자세한 내용을 출력하는 함수를 포함하고 있다.   
 
+<br>
+
+- **디렉토리 수정(일곱 번째 리팩토링)**   
+
+```
+|-- hacker_news
+        |-- src
+            |-- src
+                |-- core
+                    |-- api.ts
+                    |-- router.ts
+                    |-- view.ts
+                |-- page
+                    |-- index.ts
+                    |-- news-detail-view.ts
+                    |-- news-feed-view.ts
+                |-- types
+                    |-- index.ts
+            |-- config.ts   
+            |-- api.ts 
+            |-- store.ts
+        |-- index.html
+        
+```   
+
+<br>
+
+
 
 - javascript만을 이용해서 만들었으며, `handlebars` 템플릿 라이브러리를 사용하여, ui를 작성했다.   
 

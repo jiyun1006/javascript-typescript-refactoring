@@ -12,5 +12,7 @@
 
 - <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_6.md">여섯 번째 리팩토링(class & 접근제어)</a>     
 
-- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_7.md">일곱 번째 리팩토링(디렉토리 분리)</a>
+- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_7.md">일곱 번째 리팩토링(디렉토리 분리)</a>   
+
+- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_8.md">여덟 번째 리팩토링(Store 전역변수 관리)</a>
 
