@@ -1,6 +1,6 @@
 import View from '../core/view';
 import { NewsDetailApi } from '../core/api';
-import { NewsDetail, NewsComment } from '../types';
+import { NewsComment, NewsStore } from '../types';
 import { CONTENT_URL } from '../config';
 
 const template = `
@@ -25,34 +25,28 @@ const template = `
     <div class="text-gray-400 h-20">
       {{__content__}}
     </div>
-
     {{__comments__}}
-
   </div>
 </div>
 `;
+
 export default class NewsDetailView extends View {
-  constructor(containerId: string) {
+  private store: NewsStore;
 
+  constructor(containerId: string, store: NewsStore) {
     super(containerId, template);
-
+    this.store = store;
   }
-  render(): void {
-    const id = location.hash.substr(7);
+
+  render = (id: string): void => {
     const api = new NewsDetailApi(CONTENT_URL.replace('@id', id));
-    const newsDetail: NewsDetail = api.getData();
+    const { title, content, comments } = api.getData();
 
-    for (let i = 0; i < store.feeds.length; i++) {
-      if (store.feeds[i].id === Number(id)) {
-        store.feeds[i].read = true;
-        break;
-      }
-    }
-
-    this.setTemplateData('comments', this.makeComment(newsDetail.comments));
-    this.setTemplateData('currentPage', String(store.currentPage));
-    this.setTemplateData('title', newsDetail.title);
-    this.setTemplateData('content', newsDetail.content);
+    this.store.makeRead(Number(id));
+    this.setTemplateData('currentPage', this.store.currentPage.toString());
+    this.setTemplateData('title', title);
+    this.setTemplateData('content', content);
+    this.setTemplateData('comments', this.makeComment(comments));
 
     this.updateView();
   }
@@ -60,15 +54,16 @@ export default class NewsDetailView extends View {
   private makeComment(comments: NewsComment[]): string {
     for (let i = 0; i < comments.length; i++) {
       const comment: NewsComment = comments[i];
+
       this.addHtml(`
-          <div style="padding-left: ${comment.level * 40}px;" class="mt-4">
-            <div class="text-gray-400">
-              <i class="fa fa-sort-up mr-2"></i>
-              <strong>${comment.user}</strong> ${comment.time_ago}
-            </div>
-            <p class="text-gray-700">${comment.content}</p>
-          </div>      
-        `);
+        <div style="padding-left: ${comment.level * 40}px;" class="mt-4">
+          <div class="text-gray-400">
+            <i class="fa fa-sort-up mr-2"></i>
+            <strong>${comment.user}</strong> ${comment.time_ago}
+          </div>
+          <p class="text-gray-700">${comment.content}</p>
+        </div>      
+      `);
 
       if (comment.comments.length > 0) {
         this.addHtml(this.makeComment(comment.comments));

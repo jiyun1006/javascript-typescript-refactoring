@@ -1,4 +1,4 @@
->### 다섯 번째 리팩토링   
+>### 일곱 번째 리팩토링   
 
 <br>
 
@@ -68,5 +68,7 @@
 
         // app.ts 에서 페이지들을 import 받을 때의 모습
         import { NewsDetailView, NewsFeedView } from './page';
-        ```
+        ```   
+    
+    
     
