@@ -14,5 +14,9 @@
 
 - <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_7.md">일곱 번째 리팩토링(디렉토리 분리)</a>   
 
-- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_8.md">여덟 번째 리팩토링(Store 전역변수 관리)</a>
+- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_8.md">여덟 번째 리팩토링(Store 전역변수 관리)</a>     
+
+- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_9.md">아홉 번째 리팩토링(비동기 방식 처리)</a>   
+
+- <a href="https://github.com/jiyun1006/javascript-typescript-refactoring/blob/main/refactoring/md_dir/refactoring_10.md">열 번째 리팩토링(async & await)</a>
 
